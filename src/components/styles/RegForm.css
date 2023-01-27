@@ -1,0 +1,80 @@
+#root{
+    background: url('../resolve-query.jpeg');
+    height: 100vh;
+    background-repeat: round;
+    overflow: auto;
+}
+
+.regForm {
+    padding-top: 40px;
+    text-align: -webkit-center;
+}
+
+label{
+    width: 50vw;
+
+}
+
+h3{
+    display: flex;
+    justify-content: center;
+}
+input{
+    width:90vw
+}
+
+.ans{
+    width: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    margin: 20px 5px;
+}
+
+/* .formSec{
+    width: 50%;
+} */
+
+#formImg{
+    width: 175px;
+}
+
+#formTitle{
+    margin: 0 25px;
+}
+
+#formTitle:hover{
+    cursor: pointer;
+}
+.ncpass{
+    border-color: red;
+}
+.ncpass:focus{
+    border-color: red;
+}
+
+
+.d-none{
+    display: none;
+}
+
+.form-1{
+    text-decoration-line: underline;
+}
+
+button{
+    background: burlywood;
+    border-radius: 8px;
+    font-size: 17px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px)
+{
+    .formSec{
+        width: 95%;
+    }
+
+}
