@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useEffect } from 'react'
 import './styles/RegForm.css'
 
 const RegForm = () => { 
@@ -43,14 +44,27 @@ const RegForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const id = "1nPEgDC7Hft1i-eYLMrhlzRg0W-BOVdOhbZRwJtTCjxw" //YOUR FORM ID
+   
+        // set the target on the form to point to a hidden iframe
+        // some browsers need the target set via JavaScript, no idea why...
+        // document.getElementById('bug-form').target = 'my-response-iframe';
+        // detect when the iframe reloads
+//         var iframe = document.getElementById('my-response-iframe');
+//         if (iframe) {
+     
+//             // now you can do stuff, such as displaying a message or redirecting to a new page.
+//             console.log("first")
+          
+//    }
+
         const id = "1FAIpQLScEjt7Ba7tw9Y0X8hQXoxoHeasLYDAQPeUI4HlF1UJlJGkjfg" //YOUR FORM ID
-        // const formUrl = "https://docs.google.com/forms/d/"+ id     +"/formResponse" +`?entry.1045781291=${formData.name}&entry.2005620554=${formData.email}&entry.1065046570=${formData.subject}&entry.839337160=${formData.message}`;
         const formUrl = "https://docs.google.com/forms/d/e/"+ id     +"/formResponse" +`?entry.2005620554=${iCredential.name}&entry.1045781291=${iCredential.email}&entry.1166974658=${iCredential.category}&entry.839337160=${iCredential.bug}`;
         console.log(formUrl)
         try {
             const response = await fetch(formUrl, {
             method: 'POST',
+            // type:'cors'
+            mode: 'no-cors'
             });
             console.log(response)      
             if(response){
@@ -73,11 +87,12 @@ const RegForm = () => {
         const id = "1FAIpQLScxY57D11rmm30NntDGrhiHGZElicmKcnXMefGtIEFwA7c_3g" //YOUR FORM ID
         // const formUrl = "https://docs.google.com/forms/d/"+ id     +"/formResponse" +`?entry.1045781291=${formData.name}&entry.2005620554=${formData.email}&entry.1065046570=${formData.subject}&entry.839337160=${formData.message}`;
         const formUrl = "https://docs.google.com/forms/d/e/"+ id     +"/formResponse" +`?entry.2005620554=${bCredential.name}&entry.1045781291=${bCredential.email}&entry.1166974658=${bCredential.subject}&entry.1065046570=${bCredential.contactNumber}&entry.839337160=${bCredential.message}`;
-        console.log(formUrl)
+        // console.log(formUrl)
 
         try {
             const response = await fetch(formUrl, {
             method: 'POST',
+            mode: 'no-cors'
             });
             // console.log(response)      
             if(response){
@@ -94,6 +109,28 @@ const RegForm = () => {
             setError('Error Occured.Check your network connection.')
         }
     }
+
+ 
+                        
+// useEffect(() => {
+//   // set the target on the form to point to a hidden iframe
+//   // some browsers need the target set via JavaScript, no idea why...
+//   document.getElementById('my-form').target = 'my-response-iframe'
+//   // detect when the iframe reloads
+//   let iframe = document.getElementById('my-response-iframe')
+  
+//   if (iframe) {
+//       iframe.onload = function () {
+//           // now you can do stuff, such as displaying a message or redirecting to a new page.
+//       }
+//   }
+
+// }, [])
+
+    
+        
+
+   
         
     return (
         <>
@@ -113,7 +150,7 @@ const RegForm = () => {
                         {
                             formName==='bug-form' 
                             ?
-                            <form id='bug-form' onSubmit={handleSubmit}>
+                            <form target="my-response-iframe" id='bug-form' onSubmit={handleSubmit}>
                                 <div className='my-form'>
                                     <div className='ans'>
                                         <label htmlFor="name">Name</label>
@@ -178,6 +215,9 @@ const RegForm = () => {
                             </form>
                         }
                     </div>
+
+                    {/* <iframe id="my-response-iframe" name="my-response-iframe"></iframe> */}
+                    
                 </div>
             </div>
         </>
